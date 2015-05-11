@@ -30,7 +30,7 @@ module Vidyo
           rescue Savon::SOAPFault => error
             case error.message
             when /Room exist for extension/
-              @extension_tail = (@extension_tail == MAX_EXTENSION_TAIL ? rand(MAX_EXTENSION_TAIL) : @extension_tail + 1)
+              increment_extension_tail
             when /Room exist for name/
               @room_name = SecureRandom.base64
             else
@@ -63,13 +63,21 @@ module Vidyo
       end
 
       def room_extension
-        @extension_tail ||= rand(MAX_EXTENSION_TAIL)
+        @extension_tail ||= random_extension_tail
         "#{client.extension_base}#{@extension_tail}"
       end
 
       def room_type
         'Public'
         # ['Public', 'Private'].find { |t| t == params[:room_type] } || 'Public'
+      end
+
+      def random_extension_tail
+        rand(MAX_EXTENSION_TAIL)
+      end
+
+      def increment_extension_tail
+        @extension_tail = (@extension_tail == MAX_EXTENSION_TAIL ? rand(MAX_EXTENSION_TAIL) : @extension_tail + 1)
       end
 
     end

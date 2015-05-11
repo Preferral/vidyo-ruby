@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Vidyo::AdminApi::RoomCreator do
+describe Vidyo::AdminApi::RoomDestroyer do
   it 'does stuff' do
     pending # no code yet
     raise 'Needs implementaion'

@@ -27,6 +27,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry"
   spec.add_development_dependency "pry-remote"
   spec.add_development_dependency "pry-nav"
+  spec.add_development_dependency "fuubar"
+  # spec.add_development_dependency "webmock"
 
   spec.add_runtime_dependency 'savon', '~> 2.9.0'
 end

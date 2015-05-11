@@ -3,6 +3,7 @@ require "vidyo/version"
 # Api/Use cases
 require "vidyo/admin_api/room_creator"
 require "vidyo/admin_api/room_getter"
+require "vidyo/admin_api/room_destroyer"
 
 # Models
 require "vidyo/room"
@@ -46,7 +47,7 @@ module Vidyo
 
     class VidyoAdminClient
 
-      WSDL_URI = 'services/VidyoPortalAdminService?wsdl'
+      WSDL_URI = "services/VidyoPortalAdminService?wsdl"
 
       attr_accessor :extension_base, :app_user_name
 
@@ -75,12 +76,20 @@ module Vidyo
         return Vidyo::AdminApi::RoomCreator.new(name, self).call
       end
 
+      def get_rooms
+        return Vidyo::AdminApi::RoomGetter.new(self).all
+      end
+
       def get_room_by_id(id:)
         return Vidyo::AdminApi::RoomGetter.new(self).find_by_id(id)
       end
 
       def get_room_by_extension(extension:)
         return Vidyo::AdminApi::RoomGetter.new(self).find_by_extension(extension)
+      end
+
+      def destroy_room(id:)
+        return Vidyo::AdminApi::RoomDestroyer.new(self).destroy_by_id(id)
       end
 
       def wsdl_url
