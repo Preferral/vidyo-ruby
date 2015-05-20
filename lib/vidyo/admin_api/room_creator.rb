@@ -2,7 +2,7 @@ module Vidyo
   module AdminApi
     class RoomCreator < Struct.new(:name, :client)
 
-      MAX_EXTENSION_TAIL = 9_999_999_999_999_999 # 16 digits
+      MAX_EXTENSION_TAIL = 9_999_999_999_999 # 13 digits
 
       def call
         create_room
