@@ -69,7 +69,6 @@ module Vidyo
 
       def room_type
         'Public'
-        # ['Public', 'Private'].find { |t| t == params[:room_type] } || 'Public'
       end
 
       def random_extension_tail
